@@ -11,4 +11,6 @@ public interface FoodService {
     Food addFood(Food food);
 
     Food getFoodByName(String name);
+
+    Food getFoodById(Long id);
 }

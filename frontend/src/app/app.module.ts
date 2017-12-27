@@ -22,6 +22,8 @@ import { AddCreditCardComponent } from './component/credit-card/add-credit-card/
 import { EditCreditCardComponent } from './component/credit-card/edit-credit-card/edit-credit-card.component';
 import { PasswordComponent } from './component/dashboard/password/password.component';
 import { MainMenuComponent } from './component/main-menu/main-menu.component';
+import { FoodDetailComponent } from './component/main-menu/food-detail/food-detail.component';
+
 
 import { UserService,  } from './service/user.service';
 import { LoginService } from './service/login.service';
@@ -29,12 +31,18 @@ import { SharedService } from './service/shared.service';
 import { AddressService } from './service/address.service';
 import { CreditCardService } from './service/credit-card.service';
 import { MainMenuService } from './service/main-menu.service';
+import { FoodService } from './service/food.service';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
-  { path: 'mainMenu', component: MainMenuComponent},
+  { path: 'mainMenu', component: MainMenuComponent,
+    children: [
+      
+    ]
+  },
+  { path: 'foodDetail/:id', component: FoodDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent,
@@ -71,7 +79,8 @@ const appRoutes: Routes = [
     AddCreditCardComponent,
     EditCreditCardComponent,
     PasswordComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    FoodDetailComponent
   ],
   imports: [
   	NgbModule.forRoot(),
@@ -92,7 +101,8 @@ const appRoutes: Routes = [
     SharedService,
     AddressService,
     CreditCardService,
-    MainMenuService
+    MainMenuService,
+    FoodService
   ],
   bootstrap: [AppComponent]
 })

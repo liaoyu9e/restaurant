@@ -38,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/image/**",
             "/login/**",
             "/logout/**",
-            "/category/**"
+            "/category/**",
+            "/food/**"
     };
 
     @Override

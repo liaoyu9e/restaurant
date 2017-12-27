@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MainMenuService } from '../../service/main-menu.service';
 import { Category } from '../../model/Category';
+import { Food } from '../../model/Food';
+import {Params, ActivatedRoute,Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-main-menu',
@@ -11,7 +14,12 @@ export class MainMenuComponent implements OnInit {
   private isCollapsedList: boolean[];
   private categoryList: Category[];
 
-  constructor(private menuService: MainMenuService) { }
+  constructor(private menuService: MainMenuService, private router: Router, private route:ActivatedRoute) { }
+
+  onViewFood(food: Food) {
+    console.log("clicked");
+    this.router.navigate(['/foodDetail', food.id]);
+  }
 
   ngOnInit() {
   	this.menuService.getCategoryList().subscribe(

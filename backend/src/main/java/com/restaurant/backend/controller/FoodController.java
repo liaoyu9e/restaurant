@@ -26,4 +26,9 @@ public class FoodController {
     public Food addFood(@RequestBody Food food){
         return foodService.addFood(food);
     }
+
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    public Food getFoodById(@PathVariable String id) {
+        return foodService.getFoodById(Long.parseLong(id));
+    }
 }

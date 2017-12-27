@@ -9,9 +9,12 @@
 	</span>
 	<div id="collapseExample" [ngbCollapse]="!isCollapsedList[idx]">
 		<div>
-				<ul class="list-group" *ngFor = "let food of category.foodList">
-				  <li class="list-group-item">{{food.name}}</li>
+				<ul class="list-group" >
+				  <li *ngFor = "let food of category.foodList" class="list-group-item">
+				  	<a (click)="onViewFood(food)">{{food.name}}</a>
+				  </li>
 				</ul>
+
 		</div>
 	</div>
 </div>
