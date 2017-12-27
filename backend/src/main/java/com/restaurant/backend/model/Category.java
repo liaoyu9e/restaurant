@@ -1,9 +1,7 @@
 package com.restaurant.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -14,6 +12,9 @@ public class Category {
     private String description;
 
     public Category(){}
+
+    @OneToMany(mappedBy = "category")
+    public List<Food> foodList;
 
     public Category(String name) {
         this.name=name;

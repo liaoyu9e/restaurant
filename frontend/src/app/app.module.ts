@@ -21,18 +21,20 @@ import { CreditCardComponent } from './component/credit-card/credit-card.compone
 import { AddCreditCardComponent } from './component/credit-card/add-credit-card/add-credit-card.component';
 import { EditCreditCardComponent } from './component/credit-card/edit-credit-card/edit-credit-card.component';
 import { PasswordComponent } from './component/dashboard/password/password.component';
-
+import { MainMenuComponent } from './component/main-menu/main-menu.component';
 
 import { UserService,  } from './service/user.service';
 import { LoginService } from './service/login.service';
 import { SharedService } from './service/shared.service';
 import { AddressService } from './service/address.service';
 import { CreditCardService } from './service/credit-card.service';
+import { MainMenuService } from './service/main-menu.service';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
+  { path: 'mainMenu', component: MainMenuComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent,
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
       {path: 'creditCard',component: CreditCardComponent},
       {path: 'editCreditCard/:id',component: EditCreditCardComponent},
       {path: 'addCreditCard', component: AddCreditCardComponent},
-      {path: 'password', component: PasswordComponent},
+      {path: 'password', component: PasswordComponent}
     ]
   }
 ];
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     CreditCardComponent,
     AddCreditCardComponent,
     EditCreditCardComponent,
-    PasswordComponent
+    PasswordComponent,
+    MainMenuComponent
   ],
   imports: [
   	NgbModule.forRoot(),
@@ -88,7 +91,8 @@ const appRoutes: Routes = [
     LoginService,
     SharedService,
     AddressService,
-    CreditCardService
+    CreditCardService,
+    MainMenuService
   ],
   bootstrap: [AppComponent]
 })

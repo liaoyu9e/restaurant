@@ -1,5 +1,7 @@
 package com.restaurant.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -12,6 +14,7 @@ public class Food {
 
     @OneToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
     private BigDecimal price;
     private String description;

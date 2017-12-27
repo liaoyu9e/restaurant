@@ -1,0 +1,18 @@
+<div class="container menu-body">
+	<div *ngFor = "let category of categoryList; let idx = index" class="category-item">
+	<span>
+		<button type="button" class="btn btn-outline-primary" (click)="isCollapsedList[idx] = !isCollapsedList[idx]" [attr.aria-expanded]="!isCollapsedList[idx]" aria-controls="collapseExample">
+		<i *ngIf="!isCollapsedList[idx]" class="fa fa-plus-square" aria-hidden="true"></i>
+		<i *ngIf="isCollapsedList[idx]" class="fa fa-minus-square" aria-hidden="true"></i>
+		{{category.name}}
+		</button>
+	</span>
+	<div id="collapseExample" [ngbCollapse]="!isCollapsedList[idx]">
+		<div>
+				<ul class="list-group" *ngFor = "let food of category.foodList">
+				  <li class="list-group-item">{{food.name}}</li>
+				</ul>
+		</div>
+	</div>
+</div>
+</div>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -23,5 +25,10 @@ public class CategoryController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Category addCategory(@RequestBody Category category) {
         return categoryService.addCategory(category);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<Category> getCategoryList() {
+        return categoryService.getCategoryList();
     }
 }
