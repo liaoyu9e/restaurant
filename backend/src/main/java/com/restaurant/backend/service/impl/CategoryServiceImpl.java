@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Category.class);
     private final CategoryRepository categoryRepository;
 
     @Autowired
@@ -32,5 +32,10 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         return localCategory;
+    }
+
+    @Override
+    public Category getCategoryByName(String name) {
+        return categoryRepository.findByName(name);
     }
 }

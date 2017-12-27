@@ -17,6 +17,15 @@ public class Food {
     private String description;
     private String comment;
 
+    public Food() {}
+
+    public Food(String name, Category category, BigDecimal price, String description) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

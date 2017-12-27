@@ -1,10 +1,8 @@
 package com.restaurant.backend;
 
-import com.restaurant.backend.model.Category;
-import com.restaurant.backend.model.Role;
-import com.restaurant.backend.model.User;
-import com.restaurant.backend.model.UserRole;
+import com.restaurant.backend.model.*;
 import com.restaurant.backend.service.CategoryService;
+import com.restaurant.backend.service.FoodService;
 import com.restaurant.backend.service.UserService;
 import com.restaurant.backend.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +10,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 @SpringBootApplication
 public class BackendApplication  implements CommandLineRunner {
 	private final UserService userService;
 	private final CategoryService categoryService;
+	private final FoodService foodService;
 
 	@Autowired
-	public BackendApplication(UserService userService, CategoryService categoryService) {
+	public BackendApplication(UserService userService, CategoryService categoryService, FoodService foodService) {
 		this.userService = userService;
 		this.categoryService = categoryService;
+		this.foodService = foodService;
 	}
 
 	public static void main(String[] args) {
@@ -75,6 +77,18 @@ public class BackendApplication  implements CommandLineRunner {
 
 		for (Category category : categories) {
 			categoryService.addCategory(category);
+		}
+
+		Food chilledJellyFish = new Food("Chilled Jelly Fish", categoryService.getCategoryByName("appetizer"), new BigDecimal(11.95).setScale(2, RoundingMode.CEILING), "chilled jelly fish");
+		Food threeCupChicken = new Food("Three Cup Chicken", categoryService.getCategoryByName("chicken"), new BigDecimal(12.95).setScale(2, RoundingMode.CEILING), "chicken in three cups");
+		Food kungPaoShrimp = new Food("Kung Pao Shrimp", categoryService.getCategoryByName("seafood"), new BigDecimal(13.95).setScale(2, RoundingMode.CEILING), "shrimp in kung pao style");
+		Food cuminBeef = new Food("Cumin Beef", categoryService.getCategoryByName("beef"), new BigDecimal(15.95).setScale(2, RoundingMode.CEILING), "beef stir fried with cumin");
+		Food malaSpicyBeefTendon = new Food("Mala Spicy Beef Tendon", categoryService.getCategoryByName("Beef"), new BigDecimal(15.95).setScale(2, RoundingMode.CEILING), "beef tendon with mala source");
+
+		List<Food> foodList = new ArrayList<>(Arrays.asList(chilledJellyFish, threeCupChicken,kungPaoShrimp, cuminBeef, malaSpicyBeefTendon ));
+
+		for (Food food : foodList) {
+			foodService.addFood(food);
 		}
 	}
 
