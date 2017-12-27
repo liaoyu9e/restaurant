@@ -1,0 +1,17 @@
+<div class="list-body">
+	<div class="row">
+		<div *ngFor="let creditCard of creditCardList"  class="col-6 card card-body border-secondary mb-3" style="max-width: 18rem; ">
+			<div class="card-header">{{creditCard.name}}</div>
+			<div class="card-body text-secondary">
+				<p>
+					{{creditCard.name}}<br/>
+					{{creditCard.cardNumber}}<br/>
+				</p>
+				<button href="#" class="btn btn-primary btn-sm" (click)="onEditCreditCard(creditCard)">Edit Detail</button> &nbsp; &nbsp;
+				<button (click)="onRemoveCreditCard(creditCard)" class="btn btn-danger btn-sm">Delete</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<button type="button" class="btn btn-warning btn-sm"  routerLink="/dashboard/addCreditCard" routerLinkActive="active">Add CreditCard</button>
+</div>

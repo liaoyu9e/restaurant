@@ -1,0 +1,10 @@
+.list-body {
+	padding: 30px 5px 5px 5px;
+	width: 90%;
+	margin:auto;
+}
+
+.card-body {
+	margin-left: 10px;
+	margin-right: 10px;
+}

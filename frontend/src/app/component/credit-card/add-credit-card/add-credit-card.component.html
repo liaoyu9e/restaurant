@@ -1,0 +1,34 @@
+<div class="form-body">
+		<form (ngSubmit)="onAddCreditCard()">
+			<div *ngIf="creditCardAdded" class="alert alert-success" role="alert">
+				Your creditCard has been added.
+			</div>
+			<div class="form-group">
+				<h3>Add CreditCard</h3>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="name">Name appears on Credit Card</label>
+				<input id="name" type="text" maxlength="50" class="form-control" name="name" [(ngModel)]="creditCard.name" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="cardNumber">Card Number</label>
+				<input id="cardNumber" type="text" maxlength="50" class="form-control" name="cardNumber" [(ngModel)]="creditCard.cardNumber" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="cardNumber">Expiry Date</label>
+				<input id="expiry" type="text" maxlength="50" class="form-control" name="expiry" [(ngModel)]="creditCard.expiry" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="cic">CIC Number</label>
+				<input id="cic" type="text" maxlength="50" class="form-control" name="cic" [(ngModel)]="creditCard.cic" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="zipcode">Zipcode</label>
+				<input id="zipcode" type="text" maxlength="50" class="form-control" name="zipcode" [(ngModel)]="creditCard.zipcode" />
+			</div>
+
+			<div class="form-group">
+				<button id="signupSubmit" type="submit" class="btn btn-info btn-block">Add CreditCard</button>
+			</div>
+		</form>
+</div>

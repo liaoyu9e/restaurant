@@ -1,0 +1,31 @@
+<div class="login-page-body">
+  <p><strong>Sign up for a free account with our service:</strong></p>
+  <br/>
+
+  <button class="btn btn-info" routerLink="/register" routerLinkActive="active">Create Account</button>
+  <br/><br/>
+
+  <p>Benefits include:</p>
+  <ul>
+    <li>Save contact information for fast repeat ordering</li>
+    <li>View your order history and quickly re-order your favorites</li>
+    <li>Receive special coupons and promotions</li>
+  </ul>
+  <hr/>
+</div>
+
+<div class="login-form">
+  <form (ngSubmit)="onLogin()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="credential.email" required="required" autofocus="autofocus" />
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="credential.password" required="required" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

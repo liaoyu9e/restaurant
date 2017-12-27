@@ -1,0 +1,21 @@
+<div class="list-body">
+	<div class="row">
+		<div *ngFor="let address of addressList"  class="col-6 card card-body border-secondary mb-3" style="max-width: 18rem; ">
+			<div class="card-header">{{address.name}}</div>
+			<div class="card-body text-secondary">
+				<p>
+					<span *ngIf="address.company!=empty">{{address.company}}<br/></span>
+					{{address.street1}}<br/>
+					<span *ngIf="address.street2!=empty">{{address.street2}}<br/></span>
+					<span *ngIf="address.apt!=empty">{{address.apt}}<br/></span>
+					{{address.city}}, {{address.state}} {{address.zipcode}}<br/>
+					<span *ngIf="address.phone!=empty">{{address.phone}}</span>
+				</p>
+				<button href="#" class="btn btn-primary btn-sm" (click)="onEditAddress(address)">Edit Detail</button> &nbsp; &nbsp;
+				<button (click)="onRemoveAddress(address)" class="btn btn-danger btn-sm">Delete</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<button type="button" class="btn btn-warning btn-sm"  routerLink="/dashboard/addAddress" routerLinkActive="active">Add Address</button>
+</div>
