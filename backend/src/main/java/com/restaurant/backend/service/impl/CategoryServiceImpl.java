@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
         if(localCategory != null) {
             LOG.info("Category with name {} already exist. Nothing will be done. ", category.getName());
         } else {
-            localCategory = categoryRepository.save(localCategory);
+            localCategory = categoryRepository.save(category);
         }
 
         return localCategory;

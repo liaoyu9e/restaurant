@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 public class Food {
@@ -19,6 +20,10 @@ public class Food {
     private BigDecimal price;
     private String description;
     private String comment;
+
+    @OneToMany(mappedBy = "food")
+    @JsonIgnore
+    private List<FoodToCart> foodToCartList;
 
     public Food() {}
 
@@ -75,5 +80,13 @@ public class Food {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public List<FoodToCart> getFoodToCartList() {
+        return foodToCartList;
+    }
+
+    public void setFoodToCartList(List<FoodToCart> foodToCartList) {
+        this.foodToCartList = foodToCartList;
     }
 }

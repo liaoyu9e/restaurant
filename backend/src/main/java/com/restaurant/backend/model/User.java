@@ -45,6 +45,9 @@ public class User implements Serializable, UserDetails {
     @JsonIgnore
     private List<CreditCard> creditCardList;
 
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+
     public Long getId() {
         return id;
     }
@@ -157,6 +160,14 @@ public class User implements Serializable, UserDetails {
 
     public void setCreditCardList(List<CreditCard> creditCardList) {
         this.creditCardList = creditCardList;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

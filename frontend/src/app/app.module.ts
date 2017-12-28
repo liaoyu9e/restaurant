@@ -23,6 +23,7 @@ import { EditCreditCardComponent } from './component/credit-card/edit-credit-car
 import { PasswordComponent } from './component/dashboard/password/password.component';
 import { MainMenuComponent } from './component/main-menu/main-menu.component';
 import { FoodDetailComponent } from './component/main-menu/food-detail/food-detail.component';
+import { CartComponent } from './component/cart/cart.component';
 
 
 import { UserService,  } from './service/user.service';
@@ -37,14 +38,11 @@ import { FoodService } from './service/food.service';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
-  { path: 'mainMenu', component: MainMenuComponent,
-    children: [
-      
-    ]
-  },
+  { path: 'mainMenu', component: MainMenuComponent},
   { path: 'foodDetail/:id', component: FoodDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'dashboard', component: DashboardComponent,
     children: [
       {path: '',redirectTo: 'customerDetails', pathMatch: 'full'},
@@ -80,7 +78,8 @@ const appRoutes: Routes = [
     EditCreditCardComponent,
     PasswordComponent,
     MainMenuComponent,
-    FoodDetailComponent
+    FoodDetailComponent,
+    CartComponent
   ],
   imports: [
   	NgbModule.forRoot(),

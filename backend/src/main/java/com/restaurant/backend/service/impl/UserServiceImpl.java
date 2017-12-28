@@ -1,9 +1,12 @@
 package com.restaurant.backend.service.impl;
 
+import com.restaurant.backend.model.Cart;
 import com.restaurant.backend.model.Role;
 import com.restaurant.backend.model.User;
 import com.restaurant.backend.model.UserRole;
+import com.restaurant.backend.repository.CartRepository;
 import com.restaurant.backend.repository.UserRepository;
+import com.restaurant.backend.service.CartService;
 import com.restaurant.backend.service.UserService;
 import com.restaurant.backend.utility.SecurityUtility;
 import org.slf4j.Logger;
@@ -23,10 +26,12 @@ public class UserServiceImpl implements UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, CartRepository cartRepository) {
         this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
     }
 
     private BCryptPasswordEncoder passwordEncoder(){
@@ -53,8 +58,14 @@ public class UserServiceImpl implements UserService {
             String encryptedPassword = SecurityUtility.passwordEncoder().encode(user.getPassword());
             user.setPassword(encryptedPassword);
             user.setUsername(user.getEmail());
-            localUser = userRepository.save(user);
 
+            Cart cart = new Cart();
+            cart = cartRepository.save(cart);
+            user.setCart(cart);
+
+            localUser = userRepository.save(user);
+            cart.setUser(localUser);
+            cartRepository.save(cart);
         }
 
         return localUser;
