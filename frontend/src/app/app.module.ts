@@ -33,6 +33,7 @@ import { AddressService } from './service/address.service';
 import { CreditCardService } from './service/credit-card.service';
 import { MainMenuService } from './service/main-menu.service';
 import { FoodService } from './service/food.service';
+import { CartService } from './service/cart.service';
 
 
 const appRoutes: Routes = [
@@ -101,7 +102,8 @@ const appRoutes: Routes = [
     AddressService,
     CreditCardService,
     MainMenuService,
-    FoodService
+    FoodService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

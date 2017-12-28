@@ -5,6 +5,7 @@ import com.restaurant.backend.model.Food;
 import com.restaurant.backend.model.FoodToCart;
 import com.restaurant.backend.model.User;
 import com.restaurant.backend.repository.CartRepository;
+import com.restaurant.backend.repository.FoodRepository;
 import com.restaurant.backend.repository.FoodToCartRepository;
 import com.restaurant.backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,14 @@ public class CartServiceImpl implements CartService{
 
     private final CartRepository cartRepository;
     private final FoodToCartRepository foodToCartRepository;
+    private final FoodRepository foodRepository;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, FoodToCartRepository foodToCartRepository) {
+    public CartServiceImpl(CartRepository cartRepository, FoodToCartRepository foodToCartRepository, FoodRepository
+            foodRepository) {
         this.cartRepository = cartRepository;
         this.foodToCartRepository = foodToCartRepository;
+        this.foodRepository = foodRepository;
     }
 
     @Override
@@ -42,13 +46,37 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public FoodToCart addFoodToCart(Food food, Cart cart, int qty) {
-        FoodToCart cartItem = new FoodToCart();
-        cartItem.setCart(cart);
-        cartItem.setFood(food);
-        cartItem.setQuantity(qty);
-        cartItem.setSubtotal(food.getPrice().multiply(new BigDecimal(qty)));
 
-        FoodToCart localCartItem = foodToCartRepository.save(cartItem);
+        List<FoodToCart> foodToCartList = foodToCartRepository.findByCart(cart);
+
+        FoodToCart localCartItem = null;
+
+        for (FoodToCart cartItem : foodToCartList) {
+            if (cartItem.getFood().getId()==food.getId()) {
+                localCartItem=cartItem;
+                break;
+            }
+        }
+
+        if (localCartItem!=null) {
+
+            int newQty = localCartItem.getQty()+qty;
+            localCartItem.setQty(newQty);
+            localCartItem.setSubtotal(localCartItem.getFood().getPrice().multiply(new BigDecimal(newQty)));
+
+            localCartItem = foodToCartRepository.save(localCartItem);
+
+        } else {
+
+            FoodToCart cartItem = new FoodToCart();
+            cartItem.setCart(cart);
+            cartItem.setFood(food);
+            cartItem.setQty(qty);
+            cartItem.setSubtotal(food.getPrice().multiply(new BigDecimal(qty)));
+
+            localCartItem = foodToCartRepository.save(cartItem);
+
+        }
 
         refreshCart(cart);
 

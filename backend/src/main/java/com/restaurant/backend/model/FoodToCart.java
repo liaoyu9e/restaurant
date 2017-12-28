@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 public class FoodToCart {
@@ -22,7 +21,7 @@ public class FoodToCart {
     @JsonIgnore
     private Cart cart;
 
-    private int quantity;
+    private int qty;
     private BigDecimal subtotal;
 
     public Long getId() {
@@ -49,12 +48,12 @@ public class FoodToCart {
         this.cart = cart;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQty() {
+        return qty;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public BigDecimal getSubtotal() {

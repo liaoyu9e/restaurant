@@ -10,12 +10,25 @@ import { Food } from '../../../model/Food';
 })
 export class FoodDetailComponent implements OnInit {
   private food: Food = new Food();
+  private qty:number = 1;
 
   constructor(
   	private foodService: FoodService,
   	private route: ActivatedRoute, 
     private router:Router) { 
   	
+  }
+
+  onAddToCart() {
+    this.foodService.addFoodToCart(this.food.id, this.qty).subscribe(
+      data => {
+        console.log(data.json());
+      },
+
+      error => {
+        console.log(error.text());
+      }
+    );
   }
 
   ngOnInit() {
