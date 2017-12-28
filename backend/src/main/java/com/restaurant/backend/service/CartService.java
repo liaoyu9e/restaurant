@@ -17,4 +17,6 @@ public interface CartService {
     FoodToCart addFoodToCart(Food food, Cart cart, int qty);
 
     Cart refreshCart(Cart cart);
+
+    List<FoodToCart> updateFoodQty(FoodToCart foodToCart);
 }

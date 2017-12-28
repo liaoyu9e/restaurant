@@ -52,4 +52,9 @@ public class CartController {
 
         return cartService.addFoodToCart(food, cart, Integer.parseInt(qty));
     }
+
+    @RequestMapping(value = "/updateQty", method = RequestMethod.POST)
+    public List<FoodToCart> updateFoodQty(@RequestBody FoodToCart foodToCart) {
+        return cartService.updateFoodQty(foodToCart);
+    }
 }

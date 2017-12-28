@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input} from '@angular/core';
 import { SharedService } from '../../service/shared.service';
 import { CartService } from '../../service/cart.service';
 import { FoodToCart } from '../../model/FoodToCart';
@@ -8,13 +8,15 @@ import { FoodToCart } from '../../model/FoodToCart';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
   private foodToCartList: FoodToCart[];
   private subtotal:number = 0;
   private grandTotal: number = 0;
   private shipping: number = 5;
+  private tempQty: number;
 
   constructor(private sharedService: SharedService, private cartService: CartService) { }
+  @Input() major: number;
 
   ngOnInit() {
   	this.sharedService.publishData("hideInfoPanel");
@@ -25,7 +27,7 @@ export class CartComponent implements OnInit {
   			this.foodToCartList = data.json();
 
   			for (let i of this.foodToCartList) {
-  				this.subtotal=this.subtotal+i.subtotal;
+  				this.subtotal=Number((this.subtotal+i.subtotal).toFixed(2));
   			}
 
   			this.grandTotal=this.subtotal+this.shipping;
@@ -34,6 +36,29 @@ export class CartComponent implements OnInit {
   			console.log(error.text());
   		}
   	);
+  }
+
+  onFocus(foodToCart: FoodToCart) {
+  	this.tempQty = foodToCart.qty;
+  }
+
+  onBlur(foodToCart: FoodToCart) {
+  	if(this.tempQty != foodToCart.qty) {
+	  	console.log(foodToCart);
+	  	this.cartService.updateFoodQty(foodToCart).subscribe(
+	  		data => {
+	  			this.foodToCartList=data.json();
+	  			location.reload();
+	  		}, 
+	  		error => {
+	  			console.log(error.text());
+	  		}
+	  	);
+  	}
+  }
+
+  ngOnChanges() {
+
   }
 
 }

@@ -98,4 +98,16 @@ public class CartServiceImpl implements CartService{
 
         return cart;
     }
+
+    @Override
+    public List<FoodToCart> updateFoodQty(FoodToCart foodToCart) {
+        FoodToCart localFoodToCart = foodToCartRepository.findOne(foodToCart.getId());
+        localFoodToCart.setQty(foodToCart.getQty());
+        localFoodToCart.setSubtotal(localFoodToCart.getFood().getPrice().multiply(new BigDecimal(localFoodToCart.getQty())));
+        foodToCartRepository.save(localFoodToCart);
+        Cart cart = localFoodToCart.getCart();
+        refreshCart(cart);
+
+        return cart.getFoodToCartList();
+    }
 }
