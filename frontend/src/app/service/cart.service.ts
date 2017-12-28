@@ -35,4 +35,14 @@ export class CartService {
     });
     return this.http.post(url, JSON.stringify(foodToCartInfo), {headers : tokenHeader});
   }
+
+  removeFood(id: number) {
+    let url = this.serverPath+"/cart/"+id;
+    
+    let tokenHeader = new Headers ({
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem("iMoonWalkPro")
+    });
+    return this.http.delete(url, {headers : tokenHeader});
+  }
 }

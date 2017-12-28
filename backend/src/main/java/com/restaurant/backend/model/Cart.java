@@ -18,7 +18,6 @@ public class Cart {
     @JsonIgnore
     private User user;
 
-
     @OneToMany(mappedBy = "cart")
     private List<FoodToCart> foodToCartList;
 

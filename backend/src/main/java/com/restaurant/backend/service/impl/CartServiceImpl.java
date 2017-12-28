@@ -110,4 +110,15 @@ public class CartServiceImpl implements CartService{
 
         return cart.getFoodToCartList();
     }
+
+    @Override
+    public List<FoodToCart> removeFoodFromCart(Long id) {
+        FoodToCart foodToCart = foodToCartRepository.findOne(id);
+        Cart cart = foodToCart.getCart();
+        foodToCartRepository.delete(id);
+
+        refreshCart(cart);
+
+        return cart.getFoodToCartList();
+    }
 }

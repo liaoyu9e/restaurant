@@ -19,4 +19,6 @@ public interface CartService {
     Cart refreshCart(Cart cart);
 
     List<FoodToCart> updateFoodQty(FoodToCart foodToCart);
+
+    List<FoodToCart> removeFoodFromCart(Long id);
 }

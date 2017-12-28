@@ -5,6 +5,7 @@ import com.restaurant.backend.model.Food;
 import com.restaurant.backend.model.FoodToCart;
 import org.springframework.data.repository.CrudRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface FoodToCartRepository extends CrudRepository<FoodToCart, Long> {

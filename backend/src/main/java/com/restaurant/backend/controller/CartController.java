@@ -8,10 +8,7 @@ import com.restaurant.backend.service.CartService;
 import com.restaurant.backend.service.FoodService;
 import com.restaurant.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -56,5 +53,10 @@ public class CartController {
     @RequestMapping(value = "/updateQty", method = RequestMethod.POST)
     public List<FoodToCart> updateFoodQty(@RequestBody FoodToCart foodToCart) {
         return cartService.updateFoodQty(foodToCart);
+    }
+
+    @RequestMapping(value = "/{foodToCartId}", method = RequestMethod.DELETE)
+    public  List<FoodToCart> removeFoodFromCart(@PathVariable String foodToCartId) {
+        return cartService.removeFoodFromCart(Long.parseLong(foodToCartId));
     }
 }

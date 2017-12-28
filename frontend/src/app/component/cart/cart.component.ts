@@ -57,6 +57,18 @@ export class CartComponent implements OnInit, OnChanges {
   	}
   }
 
+  onRemove(foodToCart: FoodToCart) {
+    this.cartService.removeFood(foodToCart.id).subscribe(
+      data => {
+          this.foodToCartList=data.json();
+          location.reload();
+        }, 
+        error => {
+          console.log(error.text());
+        }
+    );
+  }
+
   ngOnChanges() {
 
   }
