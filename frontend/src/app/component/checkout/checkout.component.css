@@ -1,0 +1,9 @@
+.checkout-body {
+	padding-top: 20px;
+	width:90%;
+	margin: auto;
+}
+
+.box {
+	border: 1px red solid;
+}

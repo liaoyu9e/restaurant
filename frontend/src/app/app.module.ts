@@ -24,6 +24,8 @@ import { PasswordComponent } from './component/dashboard/password/password.compo
 import { MainMenuComponent } from './component/main-menu/main-menu.component';
 import { FoodDetailComponent } from './component/main-menu/food-detail/food-detail.component';
 import { CartComponent } from './component/cart/cart.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
+import { ViewOrderComponent } from './component/view-order/view-order.component';
 
 
 import { UserService,  } from './service/user.service';
@@ -34,6 +36,7 @@ import { CreditCardService } from './service/credit-card.service';
 import { MainMenuService } from './service/main-menu.service';
 import { FoodService } from './service/food.service';
 import { CartService } from './service/cart.service';
+import { CustomerOrderService } from './service/customer-order.service';
 
 
 const appRoutes: Routes = [
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'dashboard', component: DashboardComponent,
     children: [
       {path: '',redirectTo: 'customerDetails', pathMatch: 'full'},
@@ -55,7 +59,9 @@ const appRoutes: Routes = [
       {path: 'creditCard',component: CreditCardComponent},
       {path: 'editCreditCard/:id',component: EditCreditCardComponent},
       {path: 'addCreditCard', component: AddCreditCardComponent},
-      {path: 'password', component: PasswordComponent}
+      {path: 'password', component: PasswordComponent},
+      {path: 'viewOrder', component: ViewOrderComponent}
+
     ]
   }
 ];
@@ -80,7 +86,9 @@ const appRoutes: Routes = [
     PasswordComponent,
     MainMenuComponent,
     FoodDetailComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent,
+    ViewOrderComponent
   ],
   imports: [
   	NgbModule.forRoot(),
@@ -103,7 +111,8 @@ const appRoutes: Routes = [
     CreditCardService,
     MainMenuService,
     FoodService,
-    CartService
+    CartService,
+    CustomerOrderService
   ],
   bootstrap: [AppComponent]
 })
