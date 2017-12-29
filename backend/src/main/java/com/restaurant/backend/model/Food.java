@@ -25,6 +25,10 @@ public class Food {
     @JsonIgnore
     private List<FoodToCart> foodToCartList;
 
+    @OneToMany(mappedBy = "food")
+    @JsonIgnore
+    private List<FoodToOrder> foodToOrderList;
+
     public Food() {}
 
     public Food(String name, Category category, BigDecimal price, String description) {
@@ -88,5 +92,13 @@ public class Food {
 
     public void setFoodToCartList(List<FoodToCart> foodToCartList) {
         this.foodToCartList = foodToCartList;
+    }
+
+    public List<FoodToOrder> getFoodToOrderList() {
+        return foodToOrderList;
+    }
+
+    public void setFoodToOrderList(List<FoodToOrder> foodToOrderList) {
+        this.foodToOrderList = foodToOrderList;
     }
 }

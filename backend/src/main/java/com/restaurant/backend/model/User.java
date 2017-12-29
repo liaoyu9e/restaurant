@@ -30,7 +30,7 @@ public class User implements Serializable, UserDetails {
 
     private String company;
     private String phone;
-    private String Fax;
+    private String fax;
     private String username;
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
@@ -47,6 +47,10 @@ public class User implements Serializable, UserDetails {
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<CustomerOrder> orderList;
 
     public Long getId() {
         return id;
@@ -131,11 +135,11 @@ public class User implements Serializable, UserDetails {
     }
 
     public String getFax() {
-        return Fax;
+        return fax;
     }
 
     public void setFax(String fax) {
-        Fax = fax;
+        this.fax = fax;
     }
 
     public Date getBirthday() {
@@ -168,6 +172,14 @@ public class User implements Serializable, UserDetails {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public List<CustomerOrder> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<CustomerOrder> orderList) {
+        this.orderList = orderList;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private BigDecimal Total;
+    private BigDecimal total;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -30,11 +30,11 @@ public class Cart {
     }
 
     public BigDecimal getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(BigDecimal total) {
-        Total = total;
+        this.total = total;
     }
 
     public User getUser() {

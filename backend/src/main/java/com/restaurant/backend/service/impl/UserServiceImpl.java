@@ -16,6 +16,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.Date;
 import java.util.HashSet;
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
             user.setUsername(user.getEmail());
 
             Cart cart = new Cart();
+            cart.setTotal(new BigDecimal(0));
             cart = cartRepository.save(cart);
             user.setCart(cart);
 
@@ -107,5 +109,10 @@ public class UserServiceImpl implements UserService {
         }
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findOne(id);
     }
 }

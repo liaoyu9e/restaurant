@@ -45,6 +45,11 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
+    public Cart getCartByCartId(Long id) {
+        return cartRepository.findOne(id);
+    }
+
+    @Override
     public FoodToCart addFoodToCart(Food food, Cart cart, int qty) {
 
         List<FoodToCart> foodToCartList = foodToCartRepository.findByCart(cart);
@@ -52,7 +57,7 @@ public class CartServiceImpl implements CartService{
         FoodToCart localCartItem = null;
 
         for (FoodToCart cartItem : foodToCartList) {
-            if (cartItem.getFood().getId()==food.getId()) {
+            if (cartItem.getFood().getId().equals(food.getId())) {
                 localCartItem=cartItem;
                 break;
             }

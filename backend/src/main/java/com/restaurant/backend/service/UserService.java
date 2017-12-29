@@ -15,4 +15,6 @@ public interface UserService {
     User updateUser(User user, User localUser);
 
     User updatePassword(User user, String currentPassword, String newPassword);
+
+    User getUserById(Long id);
 }

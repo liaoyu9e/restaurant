@@ -14,6 +14,8 @@ public interface CartService {
 
     Cart getCartByUser(User user);
 
+    Cart getCartByCartId(Long id);
+
     FoodToCart addFoodToCart(Food food, Cart cart, int qty);
 
     Cart refreshCart(Cart cart);
