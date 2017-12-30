@@ -8,6 +8,7 @@ import { CustomerOrderService } from '../../service/customer-order.service';
   styleUrls: ['./view-order.component.css']
 })
 export class ViewOrderComponent implements OnInit {
+  private isCollapsedList: boolean[];
 
   private orderList: CustomerOrder[];
 
@@ -17,6 +18,8 @@ export class ViewOrderComponent implements OnInit {
   	this.orderService.getOrderList().subscribe(
   		data => {
   			this.orderList = data.json();
+        let length = this.orderList.length;
+        this.isCollapsedList = new Array<boolean>(length);;
   		},
   		error => {
   			console.log(error.text());

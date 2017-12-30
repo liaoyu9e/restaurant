@@ -1,6 +1,45 @@
 <div class="container">
 	<h4>Your Orders</h4>
-	<ul class="list-group">
-		<li class="list-group-item" *ngFor = "let order of orderList">{{order.creationDate}}</li>
-	</ul>
+	<div *ngFor = "let order of orderList; let idx = index" class="category-item">
+		<span>
+			<button type="button" class="btn btn-outline-primary" (click)="isCollapsedList[idx] = !isCollapsedList[idx]" [attr.aria-expanded]="!isCollapsedList[idx]" aria-controls="collapseExample">
+				<i *ngIf="!isCollapsedList[idx]" class="fa fa-plus-square" aria-hidden="true"></i>
+				<i *ngIf="isCollapsedList[idx]" class="fa fa-minus-square" aria-hidden="true"></i>
+				{{order.creationDate}}
+			</button>
+			&nbsp;&nbsp;&nbsp;
+			<span>Status: {{order.status}}</span>
+		</span>
+		<div id="collapseExample" [ngbCollapse]="!isCollapsedList[idx]">
+			<div>
+				<ul class="list-group" >
+					<table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Food</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let foodToOrder of order.foodToOrderList">
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <!-- <a class="thumbnail pull-left" href="#"> 
+                            	<img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a> -->
+                            <div class="media-body">
+                                <p class="media-heading"><a href="#">{{foodToOrder.food.name}}</a></p>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        {{foodToOrder.qty}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
+
+
