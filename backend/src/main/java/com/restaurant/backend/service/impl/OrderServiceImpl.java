@@ -6,6 +6,7 @@ import com.restaurant.backend.repository.FoodToOrderRepository;
 import com.restaurant.backend.repository.OrderRepository;
 import com.restaurant.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -42,7 +43,19 @@ public class OrderServiceImpl implements OrderService {
 
         order.setFoodToOrderList(foodToOrderList);
         order.setStatus("Submitted");
-        order.setUser(cart.getUser());
+
+        if(null != cart.getUser()) {
+            order.setUser(cart.getUser());
+        }
+
+        if(null != cart.getGuest()) {
+            order.setGuest(cart.getGuest());
+        }
+
+        if (null == cart.getUser() && null == cart.getGuest()) {
+            throw new DuplicateKeyException("This cart is found for both an User and a Guest");
+        }
+
         order.setTotal(cart.getTotal());
 
         order.setCreationDate(new Date());

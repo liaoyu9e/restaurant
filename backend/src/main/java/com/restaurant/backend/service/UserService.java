@@ -8,6 +8,7 @@ import java.security.Principal;
 public interface UserService {
     User createUser(User user);
 
+
     User getUserByEmail(String email);
 
     User getUserByUsername(String username);

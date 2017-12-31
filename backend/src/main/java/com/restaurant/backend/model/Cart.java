@@ -18,6 +18,11 @@ public class Cart {
     @JsonIgnore
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "guest_id")
+    @JsonIgnore
+    private Guest guest;
+
     @OneToMany(mappedBy = "cart")
     private List<FoodToCart> foodToCartList;
 
@@ -51,5 +56,13 @@ public class Cart {
 
     public void setFoodToCartList(List<FoodToCart> foodToCartList) {
         this.foodToCartList = foodToCartList;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 }

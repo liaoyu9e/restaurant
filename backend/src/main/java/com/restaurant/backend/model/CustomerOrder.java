@@ -27,6 +27,11 @@ public class CustomerOrder {
     @JsonIgnore
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "guest_id")
+    @JsonIgnore
+    private Guest guest;
+
     @OneToMany(mappedBy = "order")
     private List<FoodToOrder> foodToOrderList;
 
@@ -76,5 +81,13 @@ public class CustomerOrder {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 }
