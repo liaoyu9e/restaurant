@@ -1,5 +1,6 @@
 import { User } from './User';
 import { FoodToOrder } from './FoodToOrder';
+import { Address } from './address';
 
 export class CustomerOrder {
 	public id:number;
@@ -8,4 +9,5 @@ export class CustomerOrder {
 	public creationDate: string;
 	public user: User;
 	public foodToOrderList: FoodToOrder;
+	public address: Address;
 }

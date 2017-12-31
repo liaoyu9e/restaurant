@@ -42,43 +42,122 @@
 			</div>
 		</div>
 		<hr/>
+
+		<h4>3. Help Us To Confirm Your Info</h4> <br/> 
+
+		<h4>Your Basic Info:</h4>
 		<div class="form-group">
-			<h4>3. Order And Payment <button type="button" class="btn btn-info btn-sm pull-right">Edit Cart</button></h4> <br/> 
+			<input type="text" class="form-control" id="name" placeholder="Full Name" name="name" [(ngModel)]="address.name">
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="form-group">
+					<input type="phone" class="form-control" id="phone" placeholder="Phone #" name="phone" [(ngModel)]="address.phone">
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-group">
+					<input type="email" class="form-control" id="email" placeholder="Email">
+				</div>
+			</div>
+		</div>
+
+		<h4>Delivery Address:</h4>
+		
+		<div class="form-group">
+			<input type="text" class="form-control" id="address1" placeholder="Address Line 1" name="street1" [(ngModel)]="address.street1">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" id="address2" placeholder="Address Line 2" name="street2" [(ngModel)]="address.street2">
+		</div>
+
+		<div class="row">
+			<div class="col-4">
+				<div class="form-group">
+					<input type="text" class="form-control" id="city" placeholder="City" name="city" [(ngModel)]="address.city">
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-group">
+					<input type="text" class="form-control" id="state" placeholder="State" name="state" [(ngModel)]="address.state">
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-group">
+					<input type="text" class="form-control" id="zipcode" placeholder="Zipcode" name="zipcode" [(ngModel)]="address.zipcode">
+				</div>
+			</div>
+		</div>
+
+		<h4>Payment Info:</h4>
+		<div class="form-group">
+			<label class="control-label" for="name">Name appears on card</label>
+			<input id="name" type="text" maxlength="50" class="form-control" name="name" [(ngModel)]="creditCard.name" placeholder="Name on card"/>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="cardNumber">Card Number</label>
+			<input id="cardNumber" type="text" maxlength="50" class="form-control" name="cardNumber" [(ngModel)]="creditCard.cardNumber" placeholder="Card Number" />
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<div class="form-group">
+					<label class="control-label" for="expiry">Expiry Date</label>
+					<input id="expiry" type="text" maxlength="50" class="form-control" name="expiry" [(ngModel)]="creditCard.expiry" placeholder="Expiry Date" />
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-group">
+					<label class="control-label" for="cic">CIC Number</label>
+					<input id="cic" type="text" maxlength="50" class="form-control" name="cic" [(ngModel)]="creditCard.cic" placeholder="CIC Number"/>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-group">
+					<label class="control-label" for="zipcode">Zipcode</label>
+					<input id="zipcode" type="text" maxlength="50" class="form-control" name="zipcode" [(ngModel)]="creditCard.zipcode" placeholder="Zipcode for Card"/>
+				</div>
+			</div>
+		</div>
+		
+		<hr/>
+
+		<div class="form-group">
+			<h4>4. Order Items Include: <button type="button" class="btn btn-info btn-sm pull-right">Edit Cart</button></h4> <br/> 
 			
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            Item Name
-                        </th>
-                        <th>
-                            Special Instruction
-                        </th>
-                        <th>
-                            Qty
-                        </th>
-                        <th>
-                            Total
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="active" *ngFor = "let foodToCart of foodToCartList">
-                        <td>
-                           {{foodToCart.food.name}}
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                           {{foodToCart.qty}}
-                        </td>
-                        <td>
-                           ${{foodToCart.subtotal}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							Item Name
+						</th>
+						<th>
+							Special Instruction
+						</th>
+						<th>
+							Qty
+						</th>
+						<th>
+							Total
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="active" *ngFor = "let foodToCart of foodToCartList">
+						<td>
+							{{foodToCart.food.name}}
+						</td>
+						<td>
+
+						</td>
+						<td>
+							{{foodToCart.qty}}
+						</td>
+						<td>
+							${{foodToCart.subtotal}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<button type="submit" class="btn btn-danger">PLACE YOUR ORDER</button>
 	</form>

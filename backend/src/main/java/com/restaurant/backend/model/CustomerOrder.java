@@ -35,6 +35,10 @@ public class CustomerOrder {
     @OneToMany(mappedBy = "order")
     private List<FoodToOrder> foodToOrderList;
 
+    @OneToOne
+    @JoinColumn(name = "order_info_id")
+    private OrderInfo orderInfo;
+
     public Long getId() {
         return id;
     }
@@ -89,5 +93,13 @@ public class CustomerOrder {
 
     public void setGuest(Guest guest) {
         this.guest = guest;
+    }
+
+    public OrderInfo getOrderInfo() {
+        return orderInfo;
+    }
+
+    public void setOrderInfo(OrderInfo orderInfo) {
+        this.orderInfo = orderInfo;
     }
 }

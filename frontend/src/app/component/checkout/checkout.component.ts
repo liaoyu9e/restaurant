@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../service/shared.service';
 import { CartService } from '../../service/cart.service';
 import { FoodToCart } from '../../model/FoodToCart';
+import { Address } from '../../model/address';
 import { CustomerOrderService } from '../../service/customer-order.service';
 
 @Component({
@@ -11,9 +12,11 @@ import { CustomerOrderService } from '../../service/customer-order.service';
 })
 export class CheckoutComponent implements OnInit {
   private foodToCartList: FoodToCart[];
+  private address: Address = new Address();
   private subtotal:number = 0;
   private grandTotal: number = 0;
   private shipping: number = 5;
+
 
   constructor(private sharedService: SharedService, private cartService: CartService, private orderService: CustomerOrderService) { }
 

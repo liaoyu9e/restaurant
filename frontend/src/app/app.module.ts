@@ -27,6 +27,8 @@ import { CartComponent } from './component/cart/cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { ViewOrderComponent } from './component/view-order/view-order.component';
 import { GuestComponent } from './component/guest/guest.component';
+import { AddGuestComponent } from './component/add-guest/add-guest.component';
+import { CheckoutSuccessComponent } from './component/checkout-success/checkout-success.component';
 
 
 import { UserService,  } from './service/user.service';
@@ -38,7 +40,6 @@ import { MainMenuService } from './service/main-menu.service';
 import { FoodService } from './service/food.service';
 import { CartService } from './service/cart.service';
 import { CustomerOrderService } from './service/customer-order.service';
-import { AddGuestComponent } from './component/add-guest/add-guest.component';
 
 
 const appRoutes: Routes = [
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkoutSuccess', component: CheckoutSuccessComponent}
   { path: 'addGuest', component: AddGuestComponent },
   { path: 'guest', component: GuestComponent },
   { path: 'dashboard', component: DashboardComponent,
@@ -94,7 +96,8 @@ const appRoutes: Routes = [
     CheckoutComponent,
     ViewOrderComponent,
     AddGuestComponent,
-    GuestComponent
+    GuestComponent,
+    CheckoutSuccessComponent
   ],
   imports: [
   	NgbModule.forRoot(),

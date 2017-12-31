@@ -3,6 +3,7 @@ package com.restaurant.backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Address {
@@ -112,4 +113,5 @@ public class Address {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
