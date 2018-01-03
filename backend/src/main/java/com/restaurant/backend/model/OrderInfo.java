@@ -1,6 +1,7 @@
 package com.restaurant.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class OrderInfo {
 
 
     @OneToOne(mappedBy = "orderInfo")
+    @JsonIgnore
     private CustomerOrder customerOrder;
 
     public Long getId() {

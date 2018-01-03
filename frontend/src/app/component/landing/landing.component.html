@@ -1,18 +1,25 @@
-<div class="main">
-<div class="container">
-	<div>
-		<h1 class="text-center">
-			Banner
-		</h1>
-	</div>
-<div class="row">
-  <div class="col-md-2">Left Menu</div>
-  <div id="main-menu" class="col-md-8" [ngClass]="{'col-md-10': widerColumn==true }">
-  	<app-navbar></app-navbar>
-  	<router-outlet></router-outlet>
+<div class="main" style="background-image: url('../../../assets/image/background.jpg');
+    height: 100%; 
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;">
+  <div class="container">
+   <div>
+    <img src="assets/image/banner.jpg" class="img-fluid mx-auto d-block" alt="Responsive image">
   </div>
-  <div id="info-panel" *ngIf="showInfoPanel" class="col-md-2" >.Info Panel</div>
-</div>
+  <div class="row" >
+    <div class="col-md-2">Left Menu</div>
+    <div id="main-menu" class="col-md-8" [ngClass]="{'col-md-10': widerColumn==true }">
+     <app-navbar></app-navbar>
+     <router-outlet></router-outlet>
+   </div>
+   <div id="info-panel" *ngIf="showInfoPanel" class="col-md-2" >.Info Panel</div>
+ </div>
 </div>
 </div>
 

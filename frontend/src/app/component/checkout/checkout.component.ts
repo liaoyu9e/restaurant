@@ -3,6 +3,7 @@ import { SharedService } from '../../service/shared.service';
 import { CartService } from '../../service/cart.service';
 import { FoodToCart } from '../../model/FoodToCart';
 import { Address } from '../../model/address';
+import { OrderInfo } from '../../model/OrderInfo';
 import { CustomerOrderService } from '../../service/customer-order.service';
 
 @Component({
@@ -16,12 +17,13 @@ export class CheckoutComponent implements OnInit {
   private subtotal:number = 0;
   private grandTotal: number = 0;
   private shipping: number = 5;
+  private orderInfo: OrderInfo = new OrderInfo();
 
 
   constructor(private sharedService: SharedService, private cartService: CartService, private orderService: CustomerOrderService) { }
 
   onCheckout() {
-    this.orderService.checkout().subscribe(
+    this.orderService.checkout(this.orderInfo).subscribe(
       data => {
         console.log(data.json());
       },

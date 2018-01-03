@@ -6,14 +6,14 @@
 				<div class="col-1"></div>
 				<div class="col-11">
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-						<label class="form-check-label" for="exampleRadios1">
+						<input class="form-check-input" type="radio" name="orderType" id="pickup" value="pickup" checked>
+						<label class="form-check-label" for="orderType">
 							This order is for <strong>PICK-UP</strong>.
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-						<label class="form-check-label" for="exampleRadios2">
+						<input class="form-check-input" type="radio" name="orderType" id="delivery" value="delivery">
+						<label class="form-check-label" for="orderType">
 							This order is for <strong>DELIVERY</strong>.
 						</label>
 					</div>
@@ -27,14 +27,14 @@
 				<div class="col-1"></div>
 				<div class="col-11">
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-						<label class="form-check-label" for="exampleRadios1">
+						<input class="form-check-input" type="radio" name="orderTime" id="asap" value="asap" checked>
+						<label class="form-check-label" for="orderTime">
 							I want this to be ready <strong>As Soon As Possible</strong>.
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-						<label class="form-check-label" for="exampleRadios2">
+						<input class="form-check-input" type="radio" name="orderTime" id="futureOrder" value="futureOrder">
+						<label class="form-check-label" for="orderTime">
 							I want this to be ready <strong>At a Future Date or Time</strong>.
 						</label>
 					</div>
@@ -46,18 +46,27 @@
 		<h4>3. Help Us To Confirm Your Info</h4> <br/> 
 
 		<h4>Your Basic Info:</h4>
-		<div class="form-group">
-			<input type="text" class="form-control" id="name" placeholder="Full Name" name="name" [(ngModel)]="address.name">
-		</div>
 		<div class="row">
 			<div class="col-6">
 				<div class="form-group">
-					<input type="phone" class="form-control" id="phone" placeholder="Phone #" name="phone" [(ngModel)]="address.phone">
+					<input type="text" class="form-control" id="name" placeholder="First Name" name="firstName" [(ngModel)]="orderInfo.firstName">
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="form-group">
-					<input type="email" class="form-control" id="email" placeholder="Email">
+					<input type="text" class="form-control" id="name" placeholder="Last Name" name="lastName" [(ngModel)]="orderInfo.lastName">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="form-group">
+					<input type="phone" class="form-control" id="phone" placeholder="Phone #" name="phone" [(ngModel)]="orderInfo.phone">
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-group">
+					<input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="orderInfo.email">
 				</div>
 			</div>
 		</div>
@@ -65,26 +74,26 @@
 		<h4>Delivery Address:</h4>
 		
 		<div class="form-group">
-			<input type="text" class="form-control" id="address1" placeholder="Address Line 1" name="street1" [(ngModel)]="address.street1">
+			<input type="text" class="form-control" id="address1" placeholder="Address Line 1" name="street1" [(ngModel)]="orderInfo.street1">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" id="address2" placeholder="Address Line 2" name="street2" [(ngModel)]="address.street2">
+			<input type="text" class="form-control" id="address2" placeholder="Address Line 2" name="street2" [(ngModel)]="orderInfo.street2">
 		</div>
 
 		<div class="row">
 			<div class="col-4">
 				<div class="form-group">
-					<input type="text" class="form-control" id="city" placeholder="City" name="city" [(ngModel)]="address.city">
+					<input type="text" class="form-control" id="city" placeholder="City" name="city" [(ngModel)]="orderInfo.city">
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-group">
-					<input type="text" class="form-control" id="state" placeholder="State" name="state" [(ngModel)]="address.state">
+					<input type="text" class="form-control" id="state" placeholder="State" name="state" [(ngModel)]="orderInfo.state">
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-group">
-					<input type="text" class="form-control" id="zipcode" placeholder="Zipcode" name="zipcode" [(ngModel)]="address.zipcode">
+					<input type="text" class="form-control" id="zipcode" placeholder="Zipcode" name="zipcode" [(ngModel)]="orderInfo.shippingZipcode">
 				</div>
 			</div>
 		</div>
@@ -92,29 +101,29 @@
 		<h4>Payment Info:</h4>
 		<div class="form-group">
 			<label class="control-label" for="name">Name appears on card</label>
-			<input id="name" type="text" maxlength="50" class="form-control" name="name" [(ngModel)]="creditCard.name" placeholder="Name on card"/>
+			<input id="name" type="text" maxlength="50" class="form-control" name="name" [(ngModel)]="orderInfo.nameOnCard" placeholder="Name on card"/>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="cardNumber">Card Number</label>
-			<input id="cardNumber" type="text" maxlength="50" class="form-control" name="cardNumber" [(ngModel)]="creditCard.cardNumber" placeholder="Card Number" />
+			<input id="cardNumber" type="text" maxlength="50" class="form-control" name="cardNumber" [(ngModel)]="orderInfo.cardNumber" placeholder="Card Number" />
 		</div>
 		<div class="row">
 			<div class="col-4">
 				<div class="form-group">
 					<label class="control-label" for="expiry">Expiry Date</label>
-					<input id="expiry" type="text" maxlength="50" class="form-control" name="expiry" [(ngModel)]="creditCard.expiry" placeholder="Expiry Date" />
+					<input id="expiry" type="text" maxlength="50" class="form-control" name="expiry" [(ngModel)]="orderInfo.expiry" placeholder="Expiry Date" />
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-group">
 					<label class="control-label" for="cic">CIC Number</label>
-					<input id="cic" type="text" maxlength="50" class="form-control" name="cic" [(ngModel)]="creditCard.cic" placeholder="CIC Number"/>
+					<input id="cic" type="text" maxlength="50" class="form-control" name="cic" [(ngModel)]="orderInfo.cic" placeholder="CIC Number"/>
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-group">
 					<label class="control-label" for="zipcode">Zipcode</label>
-					<input id="zipcode" type="text" maxlength="50" class="form-control" name="zipcode" [(ngModel)]="creditCard.zipcode" placeholder="Zipcode for Card"/>
+					<input id="zipcode" type="text" maxlength="50" class="form-control" name="zipcode" [(ngModel)]="orderInfo.billingZipcode" placeholder="Zipcode for Card"/>
 				</div>
 			</div>
 		</div>

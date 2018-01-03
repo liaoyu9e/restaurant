@@ -3,6 +3,7 @@ package com.restaurant.backend.service.impl;
 import com.restaurant.backend.model.*;
 import com.restaurant.backend.repository.FoodToCartRepository;
 import com.restaurant.backend.repository.FoodToOrderRepository;
+import com.restaurant.backend.repository.OrderInfoRepository;
 import com.restaurant.backend.repository.OrderRepository;
 import com.restaurant.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,24 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+
+    private final FoodToCartRepository foodToCartRepository;
+
+    private final FoodToOrderRepository foodToOrderRepository;
+
+    private final OrderInfoRepository orderInfoRepository;
 
     @Autowired
-    private FoodToCartRepository foodToCartRepository;
-
-    @Autowired
-    private FoodToOrderRepository foodToOrderRepository;
+    public OrderServiceImpl(OrderRepository orderRepository, FoodToCartRepository foodToCartRepository, FoodToOrderRepository foodToOrderRepository, OrderInfoRepository orderInfoRepository) {
+        this.orderRepository = orderRepository;
+        this.foodToCartRepository = foodToCartRepository;
+        this.foodToOrderRepository = foodToOrderRepository;
+        this.orderInfoRepository = orderInfoRepository;
+    }
 
     @Override
-    public CustomerOrder createOrder(Cart cart) {
+    public CustomerOrder createOrder(OrderInfo orderInfo, Cart cart) {
         List<FoodToCart> foodToCartList = foodToCartRepository.findByCart(cart);
 
         CustomerOrder order = new CustomerOrder();
@@ -60,6 +68,12 @@ public class OrderServiceImpl implements OrderService {
 
         order.setCreationDate(new Date());
 
+        order = orderRepository.save(order);
+
+        orderInfo.setCustomerOrder(order);
+        OrderInfo localOrderInfo = orderInfoRepository.save(orderInfo);
+
+        order.setOrderInfo(localOrderInfo);
         order = orderRepository.save(order);
 
         for (FoodToOrder foodToOrder : foodToOrderList) {

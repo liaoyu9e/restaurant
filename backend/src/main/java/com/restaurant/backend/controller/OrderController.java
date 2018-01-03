@@ -3,6 +3,7 @@ package com.restaurant.backend.controller;
 
 import com.restaurant.backend.model.Cart;
 import com.restaurant.backend.model.CustomerOrder;
+import com.restaurant.backend.model.OrderInfo;
 import com.restaurant.backend.model.User;
 import com.restaurant.backend.service.CartService;
 import com.restaurant.backend.service.OrderService;
@@ -27,11 +28,11 @@ public class OrderController {
     private UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public CustomerOrder createOrder(Principal principal) {
+    public CustomerOrder createOrder(@RequestBody OrderInfo orderInfo, Principal principal) {
         User user = userService.getUserByUsername(principal.getName());
         Cart cart = cartService.getCartByUser(user);
 
-        return orderService.createOrder(cart);
+        return orderService.createOrder(orderInfo, cart);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
