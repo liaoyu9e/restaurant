@@ -8,19 +8,24 @@ min-width: 100%;
 min-height: 100%;
 background-repeat: no-repeat;
 background-size: cover;">
-<div class="container">
- <div>
-  <img src="assets/image/banner.jpg" class="img-fluid mx-auto d-block" alt="Responsive image">
-</div>
-<div class="row" >
-  <div class="col-md-2">Left Menu</div>
-  <div id="main-menu" class="col-md-8" [ngClass]="{'col-md-10': widerColumn==true }">
-   <app-navbar></app-navbar>
-   <router-outlet></router-outlet>
- </div>
- <div id="info-panel" *ngIf="showInfoPanel" class="col-md-2" >.Info Panel</div>
-</div>
-<app-footer></app-footer>
-</div>
-</div>
+<!-- <div fill-height class="main"> -->
+	<div class="container">
+		<div>
+			<img src="assets/image/banner.jpg" class="img-fluid mx-auto d-block rounded" alt="Responsive image">
+		</div>
+			
+			<!-- <div class="embed-responsive embed-responsive-16by9">
+  				<iframe class="embed-responsive-item" src="assets/video/bg-video.mp4" ></iframe>
+			</div> -->
+			<div class="row" style="padding-top: 20px;">
+				<div class="col-md-2">Left Menu</div>
+				<div id="main-menu" class="col-md-10">
+					<app-navbar></app-navbar>
+					<router-outlet></router-outlet>
+					
+				</div>
+			</div>
+			<app-footer></app-footer>
+		</div>
+	</div>
 

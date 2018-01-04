@@ -23,7 +23,6 @@ export class FooterComponent implements OnInit {
         this.activeSession=false;
         location.reload();
         let nav = this.router;
-        this.sleep(1000);
         nav.navigate(['/login']);
       },
       error => {
