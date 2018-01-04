@@ -30,6 +30,7 @@ import { ViewOrderComponent } from './component/view-order/view-order.component'
 import { GuestComponent } from './component/guest/guest.component';
 import { AddGuestComponent } from './component/add-guest/add-guest.component';
 import { CheckoutSuccessComponent } from './component/checkout-success/checkout-success.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 import { UserService,  } from './service/user.service';
@@ -41,8 +42,7 @@ import { MainMenuService } from './service/main-menu.service';
 import { FoodService } from './service/food.service';
 import { CartService } from './service/cart.service';
 import { CustomerOrderService } from './service/customer-order.service';
-import { FooterComponent } from './component/footer/footer.component';
-
+import { LoginGuardService } from './service/login-guard.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
   { path: 'foodDetail/:id', component: FoodDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [LoginGuardService] },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'checkoutSuccess', component: CheckoutSuccessComponent},
   { path: 'addGuest', component: AddGuestComponent },
@@ -125,7 +125,8 @@ const appRoutes: Routes = [
     MainMenuService,
     FoodService,
     CartService,
-    CustomerOrderService
+    CustomerOrderService,
+    LoginGuardService
   ],
   bootstrap: [AppComponent]
 })

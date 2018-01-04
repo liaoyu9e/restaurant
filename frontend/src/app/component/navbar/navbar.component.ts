@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
         this.activeSession=false;
         location.reload();
         let nav = this.router;
-        this.sleep(1000);
+        // this.sleep(1000);
         nav.navigate(['/login']);
       },
       error => {

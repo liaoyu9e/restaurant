@@ -10,6 +10,7 @@ import {UserService} from "../../service/user.service";
 })
 export class LoginComponent implements OnInit {
   private credential = {'email':'', 'password':''};
+  public loggedIn: boolean = false;
 
   constructor(private loginService: LoginService, private userService: UserService, private router: Router) {
   }
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("iMoonWalkPro", token);
         let nav = this.router;
         location.reload();
-        this.sleep(1000);
+        // this.sleep(500);
+        this.loggedIn=true;
         nav.navigate(['/dashboard']);
       },
       error=>{

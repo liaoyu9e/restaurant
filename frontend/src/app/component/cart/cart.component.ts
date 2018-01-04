@@ -2,6 +2,9 @@ import { Component, OnInit, OnChanges, Input} from '@angular/core';
 import { SharedService } from '../../service/shared.service';
 import { CartService } from '../../service/cart.service';
 import { FoodToCart } from '../../model/FoodToCart';
+import { LoginService } from '../../service/login.service';
+import {Params, ActivatedRoute,Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-cart',
@@ -14,9 +17,12 @@ export class CartComponent implements OnInit, OnChanges {
   private grandTotal: number = 0;
   private shipping: number = 5;
   private tempQty: number;
+  private loggedIn: boolean = false;
 
-  constructor(private sharedService: SharedService, private cartService: CartService) { }
+  constructor(private sharedService: SharedService, private cartService: CartService, private loginService: LoginService, private router: Router, private route:ActivatedRoute) { }
   @Input() major: number;
+
+
 
   ngOnInit() {
   	this.sharedService.publishData("hideInfoPanel");
@@ -36,6 +42,16 @@ export class CartComponent implements OnInit, OnChanges {
   			console.log(error.text());
   		}
   	);
+
+    this.loginService.checkSession().subscribe(
+      res => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+        this.router.navigate(['/login']);
+      }
+    );
   }
 
   onFocus(foodToCart: FoodToCart) {

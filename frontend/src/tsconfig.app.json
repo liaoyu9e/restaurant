@@ -9,7 +9,8 @@
   "include": [
     "app/model/**/*.ts",
     "main.ts",
-    "polyfills.ts"
+    "polyfills.ts",
+    "../node_modules/ngx-fill-height/fill-height.module.ts"
   ],
   "exclude": [
     "test.ts",
