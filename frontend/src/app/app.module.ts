@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { FillHeightModule } from 'ngx-fill-height/fill-height.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
@@ -40,6 +41,7 @@ import { MainMenuService } from './service/main-menu.service';
 import { FoodService } from './service/food.service';
 import { CartService } from './service/cart.service';
 import { CustomerOrderService } from './service/customer-order.service';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +53,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'checkoutSuccess', component: CheckoutSuccessComponent}
+  { path: 'checkoutSuccess', component: CheckoutSuccessComponent},
   { path: 'addGuest', component: AddGuestComponent },
   { path: 'guest', component: GuestComponent },
   { path: 'dashboard', component: DashboardComponent,
@@ -97,13 +99,15 @@ const appRoutes: Routes = [
     ViewOrderComponent,
     AddGuestComponent,
     GuestComponent,
-    CheckoutSuccessComponent
+    CheckoutSuccessComponent,
+    FooterComponent
   ],
   imports: [
   	NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
+    FillHeightModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only

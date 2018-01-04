@@ -1,0 +1,20 @@
+<div class="footer-body">
+<hr>
+<nav class="nav nav-pills nav-justified">
+  <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+  <a class="nav-item nav-link" routerLink="/mainMenu" routerLinkActive="active">Menu</a>
+  <a class="nav-item nav-link" href="#">Location&amp;Hours</a>
+  <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+  <a *ngIf="activeSession" class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active">My Account</a>
+  <a *ngIf="activeSession" class="nav-item nav-link" (click)="logout()">Logout>Logout</a>
+  <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Delivery</a>
+  <a class="nav-item nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+</nav>
+<div class="text-center center-block">
+	<br />
+	<a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+	<a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+	<a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+	<a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+</div>
+</div>
