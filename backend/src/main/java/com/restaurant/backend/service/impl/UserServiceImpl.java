@@ -5,6 +5,7 @@ import com.restaurant.backend.model.Role;
 import com.restaurant.backend.model.User;
 import com.restaurant.backend.model.UserRole;
 import com.restaurant.backend.repository.CartRepository;
+import com.restaurant.backend.repository.RoleRepository;
 import com.restaurant.backend.repository.UserRepository;
 import com.restaurant.backend.service.CartService;
 import com.restaurant.backend.service.UserService;
@@ -47,11 +48,13 @@ public class UserServiceImpl implements UserService {
             LOG.info("User with user email {} already exist. Nothing will be done. ", user.getEmail());
         } else {
 
-            Set<UserRole> userRoles = new HashSet<>();
-            Role localRole = new Role();
-            localRole.setRoleId(1);
-            userRoles.add(new UserRole(user, localRole));
-            user.getUserRoles().addAll(userRoles);
+//            Set<UserRole> userRoles = new HashSet<>();
+//
+//            Role roleOfUser = roleRepository.findOne(1);
+
+//            UserRole userRole = new UserRole(user, roleOfUser);
+//            userRoles.add(userRole);
+//            user.getUserRoles().addAll(userRoles);
 
             Date today = new Date();
             user.setJoinDate(today);

@@ -1,6 +1,7 @@
 package com.restaurant.backend;
 
 import com.restaurant.backend.model.*;
+import com.restaurant.backend.repository.RoleRepository;
 import com.restaurant.backend.service.CategoryService;
 import com.restaurant.backend.service.FoodService;
 import com.restaurant.backend.service.UserService;
@@ -19,12 +20,14 @@ public class BackendApplication  implements CommandLineRunner {
 	private final UserService userService;
 	private final CategoryService categoryService;
 	private final FoodService foodService;
+	private final RoleRepository roleRepository;
 
 	@Autowired
-	public BackendApplication(UserService userService, CategoryService categoryService, FoodService foodService) {
+	public BackendApplication(UserService userService, CategoryService categoryService, FoodService foodService, RoleRepository roleRepository) {
 		this.userService = userService;
 		this.categoryService = categoryService;
 		this.foodService = foodService;
+		this.roleRepository = roleRepository;
 	}
 
 	public static void main(String[] args) {
@@ -33,6 +36,21 @@ public class BackendApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		Role role = new Role();
+
+		if (roleRepository.findOne(1) == null){
+			role.setRoleId(1);
+			role.setName("ROLE_USER");
+			roleRepository.save(role);
+		}
+
+		if (roleRepository.findOne(0) == null){
+			role.setRoleId(0);
+			role.setName("ROLE_ADMIN");
+			roleRepository.save(role);
+		}
+
 		User user1 = new User();
 		user1.setFirstName("John");
 		user1.setLastName("Adams");
@@ -43,15 +61,8 @@ public class BackendApplication  implements CommandLineRunner {
 		user1.setPhone("999-999-9999");
 		user1.setEmail("JAdams@gmail.com");
 		user1.setUsername("jadams");
-		Set<UserRole> userRoles = new HashSet<>();
-		Role role1 = new Role();
-		role1.setRoleId(1);
-		role1.setName("ROLE_USER");
 
 		userService.createUser(user1);
-
-		userRoles.clear();
-
 
 		User user2 = new User();
 		user2.setFirstName("Admin");
@@ -66,6 +77,7 @@ public class BackendApplication  implements CommandLineRunner {
 		Role role2 = new Role();
 		role2.setRoleId(0);
 		role2.setName("ROLE_ADMIN");
+		user2.getUserRoles().add(new UserRole(user2, role2));
 		userService.createUser(user2);
 
 		List<Category> categories = new ArrayList<>();
@@ -84,8 +96,8 @@ public class BackendApplication  implements CommandLineRunner {
 		Food kungPaoShrimp = new Food("Kung Pao Shrimp", categoryService.getCategoryByName("seafood"), new BigDecimal(13.95).setScale(2, RoundingMode.CEILING), "shrimp in kung pao style");
 		Food cuminBeef = new Food("Cumin Beef", categoryService.getCategoryByName("beef"), new BigDecimal(15.95).setScale(2, RoundingMode.CEILING), "beef stir fried with cumin");
 		Food malaSpicyBeefTendon = new Food("Mala Spicy Beef Tendon", categoryService.getCategoryByName("Beef"), new BigDecimal(15.95).setScale(2, RoundingMode.CEILING), "beef tendon with mala source");
-
-		List<Food> foodList = new ArrayList<>(Arrays.asList(chilledJellyFish, threeCupChicken,kungPaoShrimp, cuminBeef, malaSpicyBeefTendon ));
+		Food porkSteak = new Food("Pork Steak", categoryService.getCategoryByName("pork"), new BigDecimal(13.99).setScale(2, RoundingMode.CEILING), "fully cooked pork steak");
+		List<Food> foodList = new ArrayList<>(Arrays.asList(chilledJellyFish, threeCupChicken,kungPaoShrimp, cuminBeef, malaSpicyBeefTendon, porkSteak ));
 
 		for (Food food : foodList) {
 			foodService.addFood(food);

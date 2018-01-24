@@ -24,6 +24,7 @@ public class UserRole implements Serializable {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public long getUserRoleId() {

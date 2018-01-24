@@ -43,6 +43,7 @@ import { FoodService } from './service/food.service';
 import { CartService } from './service/cart.service';
 import { CustomerOrderService } from './service/customer-order.service';
 import { LoginGuardService } from './service/login-guard.service';
+import { PromotionComponent } from './component/promotion/promotion.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -100,7 +101,8 @@ const appRoutes: Routes = [
     AddGuestComponent,
     GuestComponent,
     CheckoutSuccessComponent,
-    FooterComponent
+    FooterComponent,
+    PromotionComponent
   ],
   imports: [
   	NgbModule.forRoot(),
